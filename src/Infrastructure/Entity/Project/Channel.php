@@ -27,11 +27,6 @@ class Channel implements Domain\Entity\Project\ChannelInterface
     protected $url;
 
     /**
-     * @var string
-     */
-    protected $name;
-
-    /**
      * @param Domain\Entity\TagInterface     $tag
      * @param Domain\Entity\ProjectInterface $project
      */
@@ -79,21 +74,5 @@ class Channel implements Domain\Entity\Project\ChannelInterface
     public function getUrl(): ?string
     {
         return $this->url;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
     }
 }

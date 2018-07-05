@@ -6,7 +6,6 @@ use App\Infrastructure;
 use App\Domain\Entity\ProjectInterface;
 use App\Domain\ValueObject\Consumer\MessageInterface;
 use App\Domain\Consumer\DependencyInjection\ProjectDependencyInterface;
-use App\Domain\Service\CommandBus\Entity\Project\Article\CreateCommandInterface;
 
 /**
  * @property ProjectDependencyInterface $dependency
@@ -22,11 +21,6 @@ class CreateConsumer extends Infrastructure\Consumer\Consumer
      * @var array
      */
     protected $projects;
-
-    /**
-     * @var ProjectDependencyInterface
-     */
-    protected $dependency;
 
     /**
      * @param ProjectDependencyInterface $dependency

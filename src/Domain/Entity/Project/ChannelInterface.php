@@ -31,14 +31,4 @@ interface ChannelInterface
      * @return null|string
      */
     public function getUrl(): ?string;
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void;
-
-    /**
-     * @return null|string
-     */
-    public function getName(): ?string;
 }

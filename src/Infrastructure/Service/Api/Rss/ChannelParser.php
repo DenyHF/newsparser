@@ -21,7 +21,7 @@ class ChannelParser implements ChannelParserInterface
 
             $article->setUrl($item->link);
             $article->setTitle($this->getText($item->title));
-            $article->setImage($this->getImage($item->image));
+            $article->setImage($this->getImage($item->image ?? $rss->channel->image->url ?? ''));
             $article->setDescription($this->getText($item->description));
 
             yield $article;

@@ -29,9 +29,4 @@ class Channel extends Infrastructure\Entity\Project\Channel
      * @MongoDB\Field(type="string")
      */
     protected $url;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $name;
 }
