@@ -9,6 +9,8 @@ checks:
         duplication: true
 
 build:
+    environment:
+        mongodb: '4.0'
     nodes:
         analysis:
             tests:
