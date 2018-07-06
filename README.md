@@ -1,203 +1,168 @@
-$showbiz = new Tag();
-$showbiz->setSlug('showbiz');
-$showbiz->setName('Шоу-бизнес');
+php bin/console app:project:parse -vvv
+php bin/console app:queue:project:channel:parse -vvv
 
-$business = new Tag();
-$business->setSlug('business');
-$business->setName('Новости бизнеса');
+    $business = new Tag();
+    $business->setSlug('business');
+    $business->setName('Бизнес');
 
-$ukraine = new Tag();
-$ukraine->setSlug('ukraine');
-$ukraine->setName('Новости Украины');
+    $politics = new Tag();
+    $politics->setSlug('politics');
+    $politics->setName('Политика');
 
-$tech = new Tag();
-$tech->setSlug('tech');
-$tech->setName('Наука и медицина');
+    $tech = new Tag();
+    $tech->setSlug('tech');
+    $tech->setName('Наука и технологии');
 
-$sport = new Tag();
-$sport->setSlug('sport');
-$sport->setName('Спорт');
+    $showbiz = new Tag();
+    $showbiz->setSlug('showbiz');
+    $showbiz->setName('Шоу-бизнес');
 
-$world = new Tag();
-$world->setSlug('world');
-$world->setName('В мире');
+    $lifestyle = new Tag();
+    $lifestyle->setSlug('lifestyle');
+    $lifestyle->setName('Мода');
 
-$kyiv = new Tag();
-$kyiv->setSlug('kyiv');
-$kyiv->setName('Новости Киева');
+    $health = new Tag();
+    $health->setSlug('health');
+    $health->setName('Здоровье');
 
-$lifestyle = new Tag();
-$lifestyle->setSlug('lifestyle');
-$lifestyle->setName('Мода');
+    $sport = new Tag();
+    $sport->setSlug('sport');
+    $sport->setName('Спорт');
 
-$good_news = new Tag();
-$good_news->setSlug('good_news');
-$good_news->setName('Хорошие новости');
+    $society = new Tag();
+    $society->setSlug('society');
+    $society->setName('Общество');
 
-$strange = new Tag();
-$strange->setSlug('strange');
-$strange->setName('Странности');
+    $culture = new Tag();
+    $culture->setSlug('culture');
+    $culture->setName('Культура');
 
-$incidents = new Tag();
-$incidents->setSlug('incidents');
-$incidents->setName('Происшествия');
+    $strange = new Tag();
+    $strange->setSlug('strange');
+    $strange->setName('Странности');
 
-$project = new Project();
-$project->setDomain('korrespondent.net');
-$project->setName('Korrespondent.net');
+    $crime = new Tag();
+    $crime->setSlug('crime');
+    $crime->setName('Происшествия');
 
-$showbizChannel = new Project\Channel($showbiz, $project);
-$showbizChannel->setUrl('http://k.img.com.ua/rss/ru/showbiz.xml');
-$showbizChannel->setName($showbiz->getName());
+    $good_news = new Tag();
+    $good_news->setSlug('good_news');
+    $good_news->setName('Хорошие новости');
 
-$businessChannel = new Project\Channel($business, $project);
-$businessChannel->setUrl('http://k.img.com.ua/rss/ru/business.xml');
-$businessChannel->setName($business->getName());
+    $world = new Tag();
+    $world->setSlug('world');
+    $world->setName('В мире');
 
-$ukraineChannel = new Project\Channel($ukraine, $project);
-$ukraineChannel->setUrl('http://k.img.com.ua/rss/ru/ukraine.xml');
-$ukraineChannel->setName($ukraine->getName());
+    $ukraine = new Tag();
+    $ukraine->setSlug('ukraine');
+    $ukraine->setName('Новости Украины');
 
-$incidentsChannel = new Project\Channel($incidents, $project);
-$incidentsChannel->setUrl('http://k.img.com.ua/rss/ru/magnolia.xml');
-$incidentsChannel->setName($incidents->getName());
+    $kyiv = new Tag();
+    $kyiv->setSlug('kyiv');
+    $kyiv->setName('Новости Киева');
 
-$techChannel = new Project\Channel($tech, $project);
-$techChannel->setUrl('http://k.img.com.ua/rss/ru/tech.xml');
-$techChannel->setName($tech->getName());
+    $korrespondent = new Project();
+    $korrespondent->setDomain('korrespondent.net');
+    $korrespondent->setName('Korrespondent.net');
+    $this->dependency->getProjectRepository()->getEntityManager()->persist($korrespondent);
 
-$sportChannel = new Project\Channel($sport, $project);
-$sportChannel->setUrl('http://k.img.com.ua/rss/ru/sport.xml');
-$sportChannel->setName($sport->getName());
+    $showbizChannel = new Project\Channel($showbiz, $korrespondent);
+    $showbizChannel->setUrl('http://k.img.com.ua/rss/ru/showbiz.xml');
 
-$worldChannel = new Project\Channel($world, $project);
-$worldChannel->setUrl('http://k.img.com.ua/rss/ru/world.xml');
-$worldChannel->setName($world->getName());
+    $businessChannel = new Project\Channel($business, $korrespondent);
+    $businessChannel->setUrl('http://k.img.com.ua/rss/ru/business.xml');
 
-$kyivChannel = new Project\Channel($kyiv, $project);
-$kyivChannel->setUrl('http://k.img.com.ua/rss/ru/kyiv.xml');
-$kyivChannel->setName($kyiv->getName());
+    $ukraineChannel = new Project\Channel($ukraine, $korrespondent);
+    $ukraineChannel->setUrl('http://k.img.com.ua/rss/ru/ukraine.xml');
 
-$lifestyleChannel = new Project\Channel($lifestyle, $project);
-$lifestyleChannel->setUrl('http://k.img.com.ua/rss/ru/lifestyle.xml');
-$lifestyleChannel->setName($lifestyle->getName());
+    $crimeChannel = new Project\Channel($crime, $korrespondent);
+    $crimeChannel->setUrl('http://k.img.com.ua/rss/ru/magnolia.xml');
 
-$good_newsChannel = new Project\Channel($good_news, $project);
-$good_newsChannel->setUrl('http://k.img.com.ua/rss/ru/good_news.xml');
-$good_newsChannel->setName($good_news->getName());
+    $techChannel = new Project\Channel($tech, $korrespondent);
+    $techChannel->setUrl('http://k.img.com.ua/rss/ru/tech.xml');
 
-$strangeChannel = new Project\Channel($strange, $project);
-$strangeChannel->setUrl('http://k.img.com.ua/rss/ru/strange.xml');
-$strangeChannel->setName($strange->getName());
+    $sportChannel = new Project\Channel($sport, $korrespondent);
+    $sportChannel->setUrl('http://k.img.com.ua/rss/ru/sport.xml');
 
-$project->addChannel($showbizChannel);
-$project->addChannel($businessChannel);
-$project->addChannel($ukraineChannel);
-$project->addChannel($incidentsChannel);
-$project->addChannel($techChannel);
-$project->addChannel($sportChannel);
-$project->addChannel($worldChannel);
-$project->addChannel($kyivChannel);
-$project->addChannel($lifestyleChannel);
-$project->addChannel($good_newsChannel);
-$project->addChannel($strangeChannel);
+    $worldChannel = new Project\Channel($world, $korrespondent);
+    $worldChannel->setUrl('http://k.img.com.ua/rss/ru/world.xml');
 
-$this->projectRepository->getEntityManager()->persist($project);
-$this->projectRepository->getEntityManager()->flush();
+    $kyivChannel = new Project\Channel($kyiv, $korrespondent);
+    $kyivChannel->setUrl('http://k.img.com.ua/rss/ru/kyiv.xml');
 
+    $lifestyleChannel = new Project\Channel($lifestyle, $korrespondent);
+    $lifestyleChannel->setUrl('http://k.img.com.ua/rss/ru/lifestyle.xml');
 
+    $good_newsChannel = new Project\Channel($good_news, $korrespondent);
+    $good_newsChannel->setUrl('http://k.img.com.ua/rss/ru/good_news.xml');
 
-$tagRepository = $this->dependency->getProjectRepository()->getEntityManager()->getRepository(Tag::class);
+    $strangeChannel = new Project\Channel($strange, $korrespondent);
+    $strangeChannel->setUrl('http://k.img.com.ua/rss/ru/strange.xml');
 
-$ukraine = $tagRepository->findOneBy(['slug' => 'ukraine']);
-$world = $tagRepository->findOneBy(['slug' => 'world']);
-$crime = $tagRepository->findOneBy(['slug' => 'crime']);
-$tech = $tagRepository->findOneBy(['slug' => 'tech']);
-$sport = $tagRepository->findOneBy(['slug' => 'sport']);
-$lifestyle = $tagRepository->findOneBy(['slug' => 'lifestyle']);
-$business = $tagRepository->findOneBy(['slug' => 'business']);
-$strange = $tagRepository->findOneBy(['slug' => 'strange']);
+    $fakty = new Project();
+    $fakty->setDomain('fakty.ua');
+    $fakty->setName('«Факты»');
+    $this->dependency->getProjectRepository()->getEntityManager()->persist($fakty);
 
-$politics = new Tag();
-$politics->setSlug('politics');
-$politics->setName('Политика');
+    $fakty->addChannel($showbizChannel);
+    $fakty->addChannel($businessChannel);
+    $fakty->addChannel($ukraineChannel);
+    $fakty->addChannel($crimeChannel);
+    $fakty->addChannel($techChannel);
+    $fakty->addChannel($sportChannel);
+    $fakty->addChannel($worldChannel);
+    $fakty->addChannel($kyivChannel);
+    $fakty->addChannel($lifestyleChannel);
+    $fakty->addChannel($good_newsChannel);
+    $fakty->addChannel($strangeChannel);
 
-$health = new Tag();
-$health->setSlug('health');
-$health->setName('Здоровье');
+    $ukraineChannel = new Project\Channel($ukraine, $fakty);
+    $ukraineChannel->setUrl('http://fakty.ua/rss_feed/ukraina');
 
-$society = new Tag();
-$society->setSlug('society');
-$society->setName('Общество');
+    $worldChannel = new Project\Channel($world, $fakty);
+    $worldChannel->setUrl('http://fakty.ua/rss_feed/world');
 
-$culture = new Tag();
-$culture->setSlug('culture');
-$culture->setName('Культура');
+    $politicsChannel = new Project\Channel($politics, $fakty);
+    $politicsChannel->setUrl('http://fakty.ua/rss_feed/politics');
 
-$project = new Project();
-$project->setDomain('fakty.ua');
-$project->setName('«Факты»');
+    $crimeChannel = new Project\Channel($crime, $fakty);
+    $crimeChannel->setUrl('http://fakty.ua/rss_feed/crime');
 
-$ukraineChannel = new Project\Channel($ukraine, $project);
-$ukraineChannel->setUrl('http://fakty.ua/rss_feed/ukraina');
-$ukraineChannel->setName($ukraine->getName());
+    $healthChannel = new Project\Channel($health, $fakty);
+    $healthChannel->setUrl('http://fakty.ua/rss_feed/health');
 
-$worldChannel = new Project\Channel($world, $project);
-$worldChannel->setUrl('http://fakty.ua/rss_feed/world');
-$worldChannel->setName($world->getName());
+    $techChannel = new Project\Channel($tech, $fakty);
+    $techChannel->setUrl('http://fakty.ua/rss_feed/science');
 
-$politicsChannel = new Project\Channel($politics, $project);
-$politicsChannel->setUrl('http://fakty.ua/rss_feed/politics');
-$politicsChannel->setName($politics->getName());
+    $sportChannel = new Project\Channel($sport, $fakty);
+    $sportChannel->setUrl('http://fakty.ua/rss_feed/sport');
 
-$crimeChannel = new Project\Channel($crime, $project);
-$crimeChannel->setUrl('http://fakty.ua/rss_feed/crime');
-$crimeChannel->setName($crime->getName());
+    $lifestyleChannel = new Project\Channel($lifestyle, $fakty);
+    $lifestyleChannel->setUrl('http://fakty.ua/rss_feed/style');
 
-$healthChannel = new Project\Channel($health, $project);
-$healthChannel->setUrl('http://fakty.ua/rss_feed/health');
-$healthChannel->setName($health->getName());
+    $societyChannel = new Project\Channel($society, $fakty);
+    $societyChannel->setUrl('http://fakty.ua/rss_feed/society');
 
-$techChannel = new Project\Channel($tech, $project);
-$techChannel->setUrl('http://fakty.ua/rss_feed/science');
-$techChannel->setName($tech->getName());
+    $cultureChannel = new Project\Channel($culture, $fakty);
+    $cultureChannel->setUrl('http://fakty.ua/rss_feed/culture');
 
-$sportChannel = new Project\Channel($sport, $project);
-$sportChannel->setUrl('http://fakty.ua/rss_feed/sport');
-$sportChannel->setName($sport->getName());
+    $businessChannel = new Project\Channel($business, $fakty);
+    $businessChannel->setUrl('http://fakty.ua/rss_feed/money');
 
-$lifestyleChannel = new Project\Channel($lifestyle, $project);
-$lifestyleChannel->setUrl('http://fakty.ua/rss_feed/style');
-$lifestyleChannel->setName($lifestyle->getName());
+    $strangeChannel = new Project\Channel($strange, $fakty);
+    $strangeChannel->setUrl('http://fakty.ua/rss_feed/life-stories');
 
-$societyChannel = new Project\Channel($society, $project);
-$societyChannel->setUrl('http://fakty.ua/rss_feed/society');
-$societyChannel->setName($society->getName());
+    $fakty->addChannel($ukraineChannel);
+    $fakty->addChannel($worldChannel);
+    $fakty->addChannel($politicsChannel);
+    $fakty->addChannel($crimeChannel);
+    $fakty->addChannel($healthChannel);
+    $fakty->addChannel($techChannel);
+    $fakty->addChannel($sportChannel);
+    $fakty->addChannel($lifestyleChannel);
+    $fakty->addChannel($societyChannel);
+    $fakty->addChannel($cultureChannel);
+    $fakty->addChannel($businessChannel);
+    $fakty->addChannel($strangeChannel);
 
-$cultureChannel = new Project\Channel($culture, $project);
-$cultureChannel->setUrl('http://fakty.ua/rss_feed/culture');
-$cultureChannel->setName($culture->getName());
-
-$businessChannel = new Project\Channel($business, $project);
-$businessChannel->setUrl('http://fakty.ua/rss_feed/money');
-$businessChannel->setName($business->getName());
-
-$strangeChannel = new Project\Channel($strange, $project);
-$strangeChannel->setUrl('http://fakty.ua/rss_feed/life-stories');
-$strangeChannel->setName($strange->getName());
-
-$project->addChannel($ukraineChannel);
-$project->addChannel($worldChannel);
-$project->addChannel($politicsChannel);
-$project->addChannel($crimeChannel);
-$project->addChannel($healthChannel);
-$project->addChannel($techChannel);
-$project->addChannel($sportChannel);
-$project->addChannel($lifestyleChannel);
-$project->addChannel($societyChannel);
-$project->addChannel($cultureChannel);
-$project->addChannel($businessChannel);
-$project->addChannel($strangeChannel);
-
-$this->dependency->getProjectRepository()->getEntityManager()->persist($project);
-$this->dependency->getProjectRepository()->getEntityManager()->flush();
+    $this->dependency->getProjectRepository()->getEntityManager()->flush();

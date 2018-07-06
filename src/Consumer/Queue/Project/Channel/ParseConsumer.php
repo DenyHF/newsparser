@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Consumer\Entity\Article;
+namespace App\Consumer\Queue\Project\Channel;
 
 use App\Infrastructure;
 use App\Domain\Entity\ProjectInterface;
@@ -10,12 +10,12 @@ use App\Domain\Consumer\DependencyInjection\ProjectDependencyInterface;
 /**
  * @property ProjectDependencyInterface $dependency
  */
-class CreateConsumer extends Infrastructure\Consumer\Consumer
+class ParseConsumer extends Infrastructure\Consumer\Consumer
 {
     /**
      * {@inheritdoc}
      */
-    public const QUEUE_NAME = 'app:entity:article:create';
+    public const QUEUE_NAME = 'app:queue:project:channel:parse';
 
     /**
      * @var array
@@ -35,7 +35,8 @@ class CreateConsumer extends Infrastructure\Consumer\Consumer
      */
     protected function onMessage(MessageInterface $message): void
     {
-        $project = $this->getProject($message->getPayload()['project']);
+        $payload = $message->getPayload();
+        $project = $this->getProject($payload['project']);
         $channelParser = new Infrastructure\Service\Api\Rss\ChannelParser();
 
         foreach ($project->getChannels() as $channel) {

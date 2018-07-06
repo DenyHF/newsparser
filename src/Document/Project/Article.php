@@ -47,12 +47,4 @@ class Article extends Infrastructure\Entity\Project\Article
      * @MongoDB\Field(name="created_at", type="date")
      */
     protected $createdAt;
-
-    /**
-     * @MongoDB\PrePersist()
-     */
-    public function onPrePersist()
-    {
-        $this->setCreatedAt(new \DateTime());
-    }
 }

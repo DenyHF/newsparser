@@ -47,6 +47,8 @@ class Article implements Domain\Entity\Project\ArticleInterface
     public function __construct(Domain\Entity\Project\ChannelInterface $channel)
     {
         $this->channel = $channel;
+
+        $this->setCreatedAt(new \DateTime());
     }
 
     /**

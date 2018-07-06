@@ -16,43 +16,17 @@ class ChannelParser implements ChannelParserInterface
         $xml = file_get_contents($channel->getUrl());
         $rss = new \SimpleXMLElement($xml);
 
-        foreach ($rss->channel->item as $item) {
+        foreach ($rss->channel->item as $element) {
+            $item = new Element\Item($element);
             $article = new Article($channel);
 
-            $article->setUrl($item->link);
-            $article->setTitle($this->getText($item->title));
-            $article->setImage($this->getImage($item->image ?? $rss->channel->image->url ?? ''));
-            $article->setDescription($this->getText($item->description));
+            $article->setUrl($item->getUrl());
+            $article->setTitle($item->getTitle());
+            $article->setImage($item->getImage());
+            $article->setDescription($item->getDescription());
 
             yield $article;
         }
     }
 
-    /**
-     * @param string $text
-     *
-     * @return string
-     */
-    protected function getText(string $text): string
-    {
-        return \trim(\strip_tags($text));
-    }
-
-    /**
-     * @param string $image
-     *
-     * @return string
-     */
-    protected function getImage(string $image): string
-    {
-        if (filter_var($image, FILTER_VALIDATE_URL)) {
-            return $image;
-        }
-
-        if (false !== strpos($image, '<img') && preg_match('#src=["\'](.*?)["\']#i', $image, $matches)) {
-            return $matches[1];
-        }
-
-        return $image;
-    }
 }

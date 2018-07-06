@@ -2,9 +2,7 @@
 
 namespace App\Infrastructure\Consumer;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Console;
-use App\Domain\Consumer\QueueInterface;
 use App\Domain\Consumer\ConsumerInterface;
 use App\Domain\ValueObject\Consumer\MessageInterface;
 use App\Domain\Consumer\DependencyInjection\ConsumerDependencyInterface;
@@ -30,11 +28,6 @@ abstract class Consumer extends Console\Command\Command implements ConsumerInter
      * @var ConsumerDependencyInterface
      */
     protected $dependency;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
 
     /**
      * @param ConsumerDependencyInterface $dependency
