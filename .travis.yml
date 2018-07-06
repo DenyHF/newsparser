@@ -9,7 +9,7 @@ cache:
         - $HOME/.composer/cache
 
 before_install:
-    - sudo pecl install -f mongo
+    - pecl install -f mongo
     - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv config-rm xdebug.ini || true
     - phpenv rehash
