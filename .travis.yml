@@ -9,6 +9,8 @@ cache:
         - $HOME/.composer/cache
 
 before_install:
+    - pecl install -f mongo-1.2.12
+    - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv config-rm xdebug.ini || true
     - phpenv rehash
     - composer self-update
