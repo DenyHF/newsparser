@@ -10,7 +10,7 @@ checks:
 
 build:
     environment:
-        mongodb: '4.0'
+        mongodb: '3.6'
     nodes:
         analysis:
             tests:
