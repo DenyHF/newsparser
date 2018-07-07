@@ -88,9 +88,7 @@ abstract class Consumer extends Console\Command\Command implements ConsumerInter
      */
     protected function onTimeout(): void
     {
-        $this->dependency->getLogger()->debug(sprintf(
-            'Waiting for new messages for the consumer "%s".', $this->getName()
-        ));
+        $this->dependency->getLogger()->debug('Waiting for new messages', ['consumer' => $this->getName()]);
 
         usleep(static::TIMEOUT_TIME_DELAY);
     }

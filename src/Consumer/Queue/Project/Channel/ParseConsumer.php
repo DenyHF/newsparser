@@ -40,6 +40,8 @@ class ParseConsumer extends Infrastructure\Consumer\Consumer
         $channelParser = new Infrastructure\Service\Api\Rss\ChannelParser();
 
         foreach ($project->getChannels() as $channel) {
+            $this->dependency->getLogger()->debug('Parse Channel', ['url' => $channel->getUrl()]);
+
             foreach ($channelParser->getArticles($channel) as $article) {
                 $this->dependency->getCreateArticleCommand()->handle($article);
             }
