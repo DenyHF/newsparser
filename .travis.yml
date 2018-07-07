@@ -1,6 +1,9 @@
 language: php
 sudo: false
 
+services:
+    - mongodb
+
 php:
     - 7.2
 
@@ -9,7 +12,7 @@ cache:
         - $HOME/.composer/cache
 
 before_install:
-    - pecl install -f mongo
+    - pecl install -f mongodb-1.4.4
     - echo "extension=mongo.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - phpenv config-rm xdebug.ini || true
     - phpenv rehash
