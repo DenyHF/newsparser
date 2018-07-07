@@ -17,14 +17,16 @@
     },
     "require-dev": {
         "symfony/dotenv": "^4.1",
-        "phpunit/phpunit": "^6.4",
-        "phpunit/php-code-coverage": "^5.0"
+        "symfony/phpunit-bridge": "^4.1"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "ext-mongo": "1.6.16"
+        }
     },
     "autoload": {
         "psr-4": {

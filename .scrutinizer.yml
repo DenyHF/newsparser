@@ -10,7 +10,7 @@ checks:
 
 build:
     environment:
-        mongodb: '4.0'
+        mongodb: '3.6'
     nodes:
         analysis:
             tests:
@@ -20,7 +20,7 @@ build:
             tests:
                 override:
                     -
-                        command: 'vendor/bin/phpunit --coverage-clover clover.xml'
+                        command: './bin/phpunit --coverage-clover clover.xml'
                         coverage:
                             file: 'clover.xml'
                             format: 'clover'
