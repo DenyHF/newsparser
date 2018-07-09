@@ -2,6 +2,9 @@
 
 namespace App\Domain\Entity\Project;
 
+use App\Domain\Entity\TagInterface;
+use Doctrine\Common\Collections\Collection;
+
 interface ArticleInterface
 {
     /**
@@ -13,6 +16,21 @@ interface ArticleInterface
      * @return ChannelInterface
      */
     public function getChannel(): ChannelInterface;
+
+    /**
+     * @param TagInterface $tag
+     */
+    public function addTag(TagInterface $tag): void;
+
+    /**
+     * @param TagInterface $tag
+     */
+    public function removeTag(TagInterface $tag): void;
+
+    /**
+     * @return Collection
+     */
+    public function getTags(): Collection;
 
     /**
      * @param string $url

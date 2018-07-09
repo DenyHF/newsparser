@@ -28,5 +28,4 @@ class ChannelParser implements ChannelParserInterface
             yield $article;
         }
     }
-
 }
