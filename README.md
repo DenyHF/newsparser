@@ -1,7 +1,7 @@
 RSS Channels Parser
 ===================
 
-<!--[![Build Status][testing-image]][testing-link]-->
+[![Build Status][testing-image]][testing-link]
 [![Scrutinizer Code Quality][scrutinizer-code-quality-image]][scrutinizer-code-quality-link]
 <!--[![Code Coverage][code-coverage-image]][code-coverage-link]-->
 
