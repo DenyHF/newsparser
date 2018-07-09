@@ -24,6 +24,11 @@ class Article extends Infrastructure\Entity\Project\Article
     protected $channel;
 
     /**
+     * @MongoDB\ReferenceMany(targetDocument="App\Document\Tag", cascade={"all"})
+     */
+    protected $tags;
+
+    /**
      * @MongoDB\Field(type="string")
      */
     protected $url;

@@ -3,6 +3,9 @@
 namespace App\Infrastructure\Entity\Project;
 
 use App\Domain;
+use App\Domain\Entity\TagInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Article implements Domain\Entity\Project\ArticleInterface
 {
@@ -15,6 +18,11 @@ class Article implements Domain\Entity\Project\ArticleInterface
      * @var Domain\Entity\Project\ChannelInterface
      */
     protected $channel;
+
+    /**
+     * @var Collection
+     */
+    protected $tags;
 
     /**
      * @var string
@@ -47,6 +55,7 @@ class Article implements Domain\Entity\Project\ArticleInterface
     public function __construct(Domain\Entity\Project\ChannelInterface $channel)
     {
         $this->channel = $channel;
+        $this->tags = new ArrayCollection([$channel->getTag()]);
 
         $this->setCreatedAt(new \DateTime());
     }
@@ -65,6 +74,30 @@ class Article implements Domain\Entity\Project\ArticleInterface
     public function getChannel(): Domain\Entity\Project\ChannelInterface
     {
         return $this->channel;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTag(TagInterface $tag): void
+    {
+        $this->tags->add($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTag(TagInterface $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
     }
 
     /**
